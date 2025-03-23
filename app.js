@@ -1,4 +1,4 @@
-import { parseCSV } from './csv_parser.js';
+import { parseCSV } from './functions/csv_parser.js';
 
 document.getElementById('parseTextBtn').addEventListener('click', () => {
   const csvText = document.getElementById('csvText').value;

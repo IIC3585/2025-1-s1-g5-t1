@@ -1,4 +1,4 @@
 nombre,apellido,mail
 juan,perez,jperez@gmail.com
-ana,Flores,aflores@gmail.com
+ana,flores,aflores@gmail.com
 luis,prado,lprado@gmail.com

@@ -6,7 +6,7 @@ export const parseCSVString = csvString =>
         line.split(',')
             .map(field => field.trim())
       );
-  
+
 export const parseCSVFile = file =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -21,7 +21,7 @@ export const parseCSVFile = file =>
     reader.onerror = error => reject(error);
     reader.readAsText(file);
   });
-  
+
 export const parseCSV = input => {
   if (input instanceof File) {
     return parseCSVFile(input);
