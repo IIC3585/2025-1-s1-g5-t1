@@ -6,10 +6,14 @@ Este proyecto es una aplicación sencilla para parsear archivos CSV, ya sea a pa
 
 ## Estructura del Proyecto
 
-proyecto/ 
+proyecto/
+
 ├── index.html
+
 ├── styles.css
+
 ├── app.js
+
 └── csv_parser.js
 
 ## Funcionalidades del Parser
@@ -60,9 +64,13 @@ El parser genera un **array de arrays** en el que cada sub-array representa una 
 **Ejemplo:**
 
 Si el CSV es:
+
 nombre,apellido,mail
+
 juan,perez,jperez@gmail.com
+
 ana,flores,aflores@gmail.com
+
 luis,prado,lprado@gmail.com
 
 
