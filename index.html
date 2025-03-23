@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Prueba de Parseo CSV</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Prueba de Parseo CSV</h1>
+      
+      <h3>Ingresar CSV como texto</h3>
+      <textarea id="csvText" placeholder="Escribe o pega tu CSV aquí"></textarea>
+      <br>
+      <button id="parseTextBtn">Parsear CSV desde Texto</button>
+      
+      <hr>
+      
+      <h3>Subir archivo CSV</h3>
+      <input type="file" id="csvFileInput" accept=".csv">
+      
+      <hr>
+      
+      <h3>Resultado:</h3>
+      <pre id="resultado"></pre>
+    </div>
+    
+    <script type="module" src="./functions/app.js"></script>
+  </body>
+</html>
