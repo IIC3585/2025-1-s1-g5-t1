@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <title>Prueba de Parseo CSV</title>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Prueba de Parseo CSV</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>CSV Editor</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Panel: Flow Process -->
+    <div class="left-panel">
+      <h2>CSV Editor</h2>
       
-      <h3>Ingresar CSV como texto</h3>
-      <textarea id="csvText" placeholder="Escribe o pega tu CSV aquí"></textarea>
-      <br>
-      <button id="parseTextBtn">Parsear CSV desde Texto</button>
-      
+      <!-- Step 1: Load CSV -->
+      <div class="step">
+        <h3>Paso 1: Cargar CSV</h3>
+        <textarea id="csvText" placeholder="Pega tu CSV aquí"></textarea>
+        <input type="file" id="csvFileInput" accept=".csv">
+        <button id="parseTextBtn">Cargar CSV</button>
+      </div>
+
       <hr>
-      
-      <h3>Subir archivo CSV</h3>
-      <input type="file" id="csvFileInput" accept=".csv">
-      
+
+      <!-- Step 2: Modify CSV -->
+      <div class="step">
+        <h3>Paso 2: Modificar CSV</h3>
+        <button id="deleteRowBtn">Eliminar Fila</button>
+        <button id="deleteColBtn">Eliminar Columna</button>
+        <button id="insertRowBtn">Insertar Fila</button>
+      </div>
+
       <hr>
-      
-      <h3>Resultado:</h3>
-      <pre id="resultado"></pre>
+
+      <!-- Step 3: Export CSV -->
+      <div class="step">
+        <h3>Paso 3: Exportar CSV</h3>
+        <button id="downloadCSV">Descargar CSV</button>
+      </div>
     </div>
-    
-    <script type="module" src="./app.js"></script>
-  </body>
+
+    <!-- Right Panel: Live Preview -->
+    <div class="right-panel">
+      <h3>Vista previa del CSV</h3>
+      <div class="table-container">
+        <table id="csvPreview"></table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
 </html>
