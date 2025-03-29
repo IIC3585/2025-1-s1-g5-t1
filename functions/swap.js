@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { parseCSV } from './csv_parser.js';
 
 // Pipe helper (composición funcional)
 const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
@@ -16,7 +17,17 @@ const toCSVString = data =>
 
 // Función principal
 export const swap = async (file, n, m) => {
-    const data = await parseCSV(file); // Usa tu parseCSV ya definido
+    const data = await parseCSV(file);
+
+    // Validar que los índices estén dentro del rango
+    if (data.length === 0) {
+        throw new Error('El archivo CSV está vacío');
+    }
+
+    const numColumns = data[0].length;
+    if (n < 1 || m < 1 || n > numColumns || m > numColumns) {
+        throw new Error(`Los índices deben estar entre 1 y ${numColumns}`);
+    }
 
     const transform = pipe(
         rows => rows.map(swapColumns(n, m)), // swap de columnas
@@ -47,7 +58,7 @@ export const columnsToRows = async (file) => {
   const data = await parseCSV(file);
   
   const transform = pipe(
-      transpose, // Usamos la misma función transpose que ya existe
+      transpose, 
       toCSVString
   );
 
