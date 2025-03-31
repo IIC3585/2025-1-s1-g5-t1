@@ -78,8 +78,8 @@ document.getElementById('deleteColBtn').addEventListener('click', () => {
 });
 
 document.getElementById('insertRowBtn').addEventListener('click', () => {
-  const rowIndex = parseInt(prompt('¿En qué fila quieres insertar? (Índice empieza en 0)'), 10);
-  const newRow = prompt('Ingresa la nueva fila en formato CSV (ej: "valor1,valor2,valor3")');
+  const rowIndex = parseInt(prompt('¿En qué fila quieres insertar? (Índice empieza en 1)'), 10);
+  const newRow = prompt('Ingresa la nueva fila en formato CSV (ej: valor1,valor2,valor3)');
 
   try {
     data = insert_row(data, rowIndex, newRow.split(','));
