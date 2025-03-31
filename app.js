@@ -1,44 +1,26 @@
 import { parseCSV } from './functions/csv_parser.js';
-import { rowdelete } from './functions/rowdelete.js';
-import { columndelete } from './functions/columndelete.js';
-import { insertrow } from './functions/insertrow.js';
+import { row_delete } from './functions/row_delete.js';
+import { column_delete } from './functions/column_delete.js';
+import { insert_row } from './functions/insert_row.js';
+import { insert_column } from './functions/insert_column.js';
+import { toHtmlTable } from './functions/to_html_table.js';
+import { swap } from './functions/swap.js';
+import { columnsToRows, rowsToColumns } from './functions/transpose.js';
+
 
 let data = [];
 
 function updatePreview() {
-  const table = document.getElementById('csvPreview');
-  table.innerHTML = ''; // Clear previous preview
+  const container = document.getElementById('csvPreview');
+  container.innerHTML = '';
 
   if (data.length === 0) {
-    table.innerHTML = '<p>No hay datos para mostrar.</p>';
+    container.innerHTML = '<p>No hay datos para mostrar.</p>';
     return;
   }
 
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  // Create header row
-  const headerRow = document.createElement('tr');
-  data[0].forEach((_, colIndex) => {
-    const th = document.createElement('th');
-    th.textContent = `Col ${colIndex + 1}`;
-    headerRow.appendChild(th);
-  });
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
-
-  // Create table body
-  data.forEach(row => {
-    const tr = document.createElement('tr');
-    row.forEach(cell => {
-      const td = document.createElement('td');
-      td.textContent = cell;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
-  });
-
-  table.appendChild(tbody);
+  const table = toHtmlTable(data);
+  if (table) container.appendChild(table);
 }
 
 document.getElementById('parseTextBtn').addEventListener('click', () => {
@@ -68,19 +50,30 @@ document.getElementById('csvFileInput').addEventListener('change', event => {
 });
 
 document.getElementById('deleteRowBtn').addEventListener('click', () => {
-  const rowIndex = parseInt(prompt('¿Cuál fila quieres eliminar? (Índice empieza en 0)'), 10);
+  const input = prompt('¿Cuál fila quieres eliminar? (Índice empieza en 1)');
+  if (input === null) {
+    return;
+  }
+  
+  const rowIndex = parseInt(input, 10);
+  if (isNaN(rowIndex)) {
+    alert('Índice inválido.');
+    return;
+  }
+  
   try {
-    data = rowdelete(data, rowIndex);
+    data = row_delete(data, rowIndex);
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
   }
 });
 
+
 document.getElementById('deleteColBtn').addEventListener('click', () => {
-  const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 0)'), 10);
+  const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 1)'), 10);
   try {
-    data = columndelete(data, colIndex);
+    data = column_delete(data, colIndex);
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
@@ -88,11 +81,56 @@ document.getElementById('deleteColBtn').addEventListener('click', () => {
 });
 
 document.getElementById('insertRowBtn').addEventListener('click', () => {
-  const rowIndex = parseInt(prompt('¿En qué fila quieres insertar? (Índice empieza en 0)'), 10);
-  const newRow = prompt('Ingresa la nueva fila en formato CSV (ej: "valor1,valor2,valor3")');
+  const rowIndex = parseInt(prompt('¿En qué fila quieres insertar? (Índice empieza en 1)'), 10);
+  const newRow = prompt('Ingresa la nueva fila en formato CSV (ej: valor1,valor2,valor3)');
 
   try {
-    data = insertrow(data, rowIndex, newRow.split(','));
+    data = insert_row(data, rowIndex, newRow.split(','));
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('insertColBtn').addEventListener('click', () => {
+  const colIndex = parseInt(prompt('¿En qué columna quieres insertar? (Índice empieza en 1)'), 10);
+  const newCol = prompt('Ingresa la nueva columna en formato CSV (ej: header,valor1,valor2,valor3)');
+
+  try {
+    data = insert_column(data, colIndex, newCol.split(','));
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const col1 = parseInt(prompt('Ingresa el primer índice de columna (comenzando en 1)'), 10);
+  const col2 = parseInt(prompt('Ingresa el segundo índice de columna (comenzando en 1)'), 10);
+  if (isNaN(col1) || isNaN(col2)) {
+    alert('Índices inválidos.');
+    return;
+  }
+  try {
+    data = swap(data, col1, col2);
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('colsToRowsBtn').addEventListener('click', () => {
+  try {
+    data = columnsToRows(data);
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('rowsToColsBtn').addEventListener('click', () => {
+  try {
+    data = rowsToColumns(data);
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);

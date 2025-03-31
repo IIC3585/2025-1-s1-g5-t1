@@ -4,6 +4,14 @@
 
 Este proyecto es una aplicación sencilla para parsear archivos CSV, ya sea a partir de un string o de un archivo subido por el usuario. El objetivo es transformar el CSV en una matriz (similar a una tabla en pandas) que se puede manipular con otras funciones posteriormente.
 
+## Para ver y probar la aplicación en funcionamiento:
+
+**Utiliza un Servidor Local**
+
+No es necesario que corras ningún package manager para probar la aplicación, lodash se importa de forma especial para ello
+
+Con la extensión Live Server en VS Code: Abre la carpeta del proyecto, haz clic derecho sobre index.html y selecciona "Open with Live Server"
+
 ## Estructura del Proyecto
 
 proyecto/
@@ -83,9 +91,3 @@ El objeto generado será:
   ["luis", "prado", "lpado@gmail.com"]
 ]
 ```
-
-## Para ver y probar la aplicación en funcionamiento:
-
-**Utiliza un Servidor Local**
-
-Con Live Server en VS Code: Abre la carpeta del proyecto, haz clic derecho sobre index.html y selecciona "Open with Live Server"

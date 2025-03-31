@@ -7,11 +7,9 @@
 </head>
 <body>
   <div class="container">
-    <!-- Left Panel: Flow Process -->
     <div class="left-panel">
       <h2>CSV Editor</h2>
       
-      <!-- Step 1: Load CSV -->
       <div class="step">
         <h3>Paso 1: Cargar CSV</h3>
         <textarea id="csvText" placeholder="Pega tu CSV aquí"></textarea>
@@ -21,24 +19,25 @@
 
       <hr>
 
-      <!-- Step 2: Modify CSV -->
       <div class="step">
         <h3>Paso 2: Modificar CSV</h3>
         <button id="deleteRowBtn">Eliminar Fila</button>
         <button id="deleteColBtn">Eliminar Columna</button>
         <button id="insertRowBtn">Insertar Fila</button>
+        <button id="insertColBtn">Insertar Columna</button>
+        <button id="swapBtn">Intercambiar Columnas</button>
+        <button id="rowsToColsBtn">Filas a Columnas</button>
+        <button id="colsToRowsBtn">Columnas a Filas</button>
       </div>
 
       <hr>
 
-      <!-- Step 3: Export CSV -->
       <div class="step">
         <h3>Paso 3: Exportar CSV</h3>
         <button id="downloadCSV">Descargar CSV</button>
       </div>
     </div>
 
-    <!-- Right Panel: Live Preview -->
     <div class="right-panel">
       <h3>Vista previa del CSV</h3>
       <div class="table-container">
