@@ -2,53 +2,23 @@ import { parseCSV } from './functions/csv_parser.js';
 import { rowdelete } from './functions/rowdelete.js';
 import { columndelete } from './functions/columndelete.js';
 import { insertrow } from './functions/insertrow.js';
+import { toHtmlTable } from './functions/to_html_table.js';
+
 
 let data = [];
 
 function updatePreview() {
-  const table = document.getElementById('csvPreview');
-  table.innerHTML = '';
+  const container = document.getElementById('csvPreview');
+  container.innerHTML = '';
 
   if (data.length === 0) {
-    table.innerHTML = '<p>No hay datos para mostrar.</p>';
+    container.innerHTML = '<p>No hay datos para mostrar.</p>';
     return;
   }
 
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  const headerRow = document.createElement('tr');
-  
-  const indexTh = document.createElement('th');
-  indexTh.textContent = '#';
-  headerRow.appendChild(indexTh);
-  
-  data[0].forEach(headerName => {
-    const th = document.createElement('th');
-    th.textContent = headerName.trim();
-    headerRow.appendChild(th);
-  });
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
-
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const tr = document.createElement('tr');
-    
-    const indexTd = document.createElement('td');
-    indexTd.textContent = i;
-    tr.appendChild(indexTd);
-    
-    row.forEach(cell => {
-      const td = document.createElement('td');
-      td.textContent = cell;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
-  }
-  table.appendChild(tbody);
+  const table = toHtmlTable(data);
+  if (table) container.appendChild(table);
 }
-
 
 document.getElementById('parseTextBtn').addEventListener('click', () => {
   const csvText = document.getElementById('csvText').value;
@@ -77,7 +47,7 @@ document.getElementById('csvFileInput').addEventListener('change', event => {
 });
 
 document.getElementById('deleteRowBtn').addEventListener('click', () => {
-  const input = prompt('¿Cuál fila quieres eliminar? (Índice empieza en 0)');
+  const input = prompt('¿Cuál fila quieres eliminar? (Índice empieza en 1)');
   if (input === null) {
     return;
   }
@@ -98,7 +68,7 @@ document.getElementById('deleteRowBtn').addEventListener('click', () => {
 
 
 document.getElementById('deleteColBtn').addEventListener('click', () => {
-  const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 0)'), 10);
+  const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 1)'), 10);
   try {
     data = columndelete(data, colIndex);
     updatePreview();
