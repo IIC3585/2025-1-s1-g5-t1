@@ -7,7 +7,7 @@ let data = [];
 
 function updatePreview() {
   const table = document.getElementById('csvPreview');
-  table.innerHTML = ''; // Clear previous preview
+  table.innerHTML = '';
 
   if (data.length === 0) {
     table.innerHTML = '<p>No hay datos para mostrar.</p>';
@@ -17,29 +17,38 @@ function updatePreview() {
   const thead = document.createElement('thead');
   const tbody = document.createElement('tbody');
 
-  // Create header row
   const headerRow = document.createElement('tr');
-  data[0].forEach((_, colIndex) => {
+  
+  const indexTh = document.createElement('th');
+  indexTh.textContent = '#';
+  headerRow.appendChild(indexTh);
+  
+  data[0].forEach(headerName => {
     const th = document.createElement('th');
-    th.textContent = `Col ${colIndex + 1}`;
+    th.textContent = headerName.trim();
     headerRow.appendChild(th);
   });
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Create table body
-  data.forEach(row => {
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
     const tr = document.createElement('tr');
+    
+    const indexTd = document.createElement('td');
+    indexTd.textContent = i;
+    tr.appendChild(indexTd);
+    
     row.forEach(cell => {
       const td = document.createElement('td');
       td.textContent = cell;
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
-  });
-
+  }
   table.appendChild(tbody);
 }
+
 
 document.getElementById('parseTextBtn').addEventListener('click', () => {
   const csvText = document.getElementById('csvText').value;
