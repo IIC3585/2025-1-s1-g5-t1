@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CSV Editor</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h2>CSV Editor</h2>
+      
+      <div class="step">
+        <h3>Paso 1: Cargar CSV</h3>
+        <textarea id="csvText" placeholder="Pega tu CSV aquí"></textarea>
+        <input type="file" id="csvFileInput" accept=".csv">
+        <button id="parseTextBtn">Cargar CSV</button>
+      </div>
+
+      <hr>
+
+      <div class="step">
+        <h3>Paso 2: Modificar CSV</h3>
+        <button id="deleteRowBtn">Eliminar Fila</button>
+        <button id="deleteColBtn">Eliminar Columna</button>
+        <button id="insertRowBtn">Insertar Fila</button>
+        <button id="insertColBtn">Insertar Columna</button>
+        <button id="swapBtn">Intercambiar Columnas</button>
+        <button id="rowsToColsBtn">Filas a Columnas</button>
+        <button id="colsToRowsBtn">Columnas a Filas</button>
+      </div>
+
+      <hr>
+
+      <div class="step">
+        <h3>Paso 3: Exportar CSV</h3>
+        <button id="downloadCSV">Descargar CSV</button>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <h3>Vista previa del CSV</h3>
+      <div class="table-container">
+        <table id="csvPreview"></table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
