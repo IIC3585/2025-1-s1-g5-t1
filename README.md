@@ -57,6 +57,60 @@ proyecto/
   - **Si el input no es ninguno de los anteriores:**  
     Lanza un error indicando que el tipo de entrada no es soportado.
 
+### 4. `swap(data, n, m)`
+- **Descripción:**  
+  Función que intercambia dos columnas en una matriz de datos CSV.
+- **Parámetros:**
+  - `data`: Matriz de datos (array de arrays)
+  - `n`: Índice de la primera columna a intercambiar (basado en 1)
+  - `m`: Índice de la segunda columna a intercambiar (basado en 1)
+- **Proceso:**
+  - Verifica que la matriz no esté vacía
+  - Valida que los índices estén dentro del rango válido de columnas
+  - Intercambia las columnas especificadas en cada fila de la matriz
+- **Uso:**  
+  Se utiliza cuando se necesita reordenar columnas en los datos CSV.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["nombre", "apellido", "mail"],
+  ["juan", "perez", "jperez@gmail.com"]
+]
+
+// swap(data, 1, 2) resulta en:
+[
+  ["apellido", "nombre", "mail"],
+  ["perez", "juan", "jperez@gmail.com"]
+]
+```
+
+### 5. Funciones de Transposición
+#### `columnsToRows(data)` y `rowsToColumns(data)`
+- **Descripción:**  
+  Funciones que permiten transponer la matriz de datos, convirtiendo filas en columnas y viceversa.
+- **Parámetro:**
+  - `data`: Matriz de datos (array de arrays)
+- **Proceso:**
+  - Utiliza la función `_.zip` de Lodash para realizar la transposición de la matriz
+- **Uso:**  
+  Útil cuando se necesita cambiar la orientación de los datos, por ejemplo, para análisis o visualización.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["A", "B", "C"],
+  ["1", "2", "3"]
+]
+
+// columnsToRows(data) resulta en:
+[
+  ["A", "1"],
+  ["B", "2"],
+  ["C", "3"]
+]
+```
+
 ## Integración en la Interfaz (index.html)
 
 El archivo `index.html` proporciona una interfaz sencilla con dos secciones principales:
