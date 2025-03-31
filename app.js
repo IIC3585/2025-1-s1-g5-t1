@@ -4,6 +4,7 @@ import { column_delete } from './functions/column_delete.js';
 import { insert_row } from './functions/insert_row.js';
 import { insert_column } from './functions/insert_column.js';
 import { toHtmlTable } from './functions/to_html_table.js';
+import { swap } from './functions/swap.js';
 
 
 let data = [];
@@ -101,6 +102,22 @@ document.getElementById('insertColBtn').addEventListener('click', () => {
     alert('Error: ' + error.message);
   }
 });
+
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const col1 = parseInt(prompt('Ingresa el primer índice de columna (comenzando en 1)'), 10);
+  const col2 = parseInt(prompt('Ingresa el segundo índice de columna (comenzando en 1)'), 10);
+  if (isNaN(col1) || isNaN(col2)) {
+    alert('Índices inválidos.');
+    return;
+  }
+  try {
+    data = swap(data, col1, col2);
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
 
 function convertToCSV(data) {
   return data.map(row => row.join(",")).join("\n");
