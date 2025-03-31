@@ -2,6 +2,7 @@ import { parseCSV } from './functions/csv_parser.js';
 import { row_delete } from './functions/row_delete.js';
 import { column_delete } from './functions/column_delete.js';
 import { insert_row } from './functions/insert_row.js';
+import { insert_column } from './functions/insert_column.js';
 import { toHtmlTable } from './functions/to_html_table.js';
 
 
@@ -83,6 +84,18 @@ document.getElementById('insertRowBtn').addEventListener('click', () => {
 
   try {
     data = insert_row(data, rowIndex, newRow.split(','));
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('insertColBtn').addEventListener('click', () => {
+  const colIndex = parseInt(prompt('¿En qué columna quieres insertar? (Índice empieza en 1)'), 10);
+  const newCol = prompt('Ingresa la nueva columna en formato CSV (ej: header,valor1,valor2,valor3)');
+
+  try {
+    data = insert_column(data, colIndex, newCol.split(','));
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
