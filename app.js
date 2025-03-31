@@ -1,7 +1,7 @@
 import { parseCSV } from './functions/csv_parser.js';
-import { rowdelete } from './functions/rowdelete.js';
-import { columndelete } from './functions/columndelete.js';
-import { insertrow } from './functions/insertrow.js';
+import { row_delete } from './functions/row_delete.js';
+import { column_delete } from './functions/column_delete.js';
+import { insert_row } from './functions/insert_row.js';
 import { toHtmlTable } from './functions/to_html_table.js';
 
 
@@ -59,7 +59,7 @@ document.getElementById('deleteRowBtn').addEventListener('click', () => {
   }
   
   try {
-    data = rowdelete(data, rowIndex);
+    data = row_delete(data, rowIndex);
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
@@ -70,7 +70,7 @@ document.getElementById('deleteRowBtn').addEventListener('click', () => {
 document.getElementById('deleteColBtn').addEventListener('click', () => {
   const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 1)'), 10);
   try {
-    data = columndelete(data, colIndex);
+    data = column_delete(data, colIndex);
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
@@ -82,7 +82,7 @@ document.getElementById('insertRowBtn').addEventListener('click', () => {
   const newRow = prompt('Ingresa la nueva fila en formato CSV (ej: "valor1,valor2,valor3")');
 
   try {
-    data = insertrow(data, rowIndex, newRow.split(','));
+    data = insert_row(data, rowIndex, newRow.split(','));
     updatePreview();
   } catch (error) {
     alert('Error: ' + error.message);
