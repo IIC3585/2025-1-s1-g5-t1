@@ -5,6 +5,7 @@ import { insert_row } from './functions/insert_row.js';
 import { insert_column } from './functions/insert_column.js';
 import { toHtmlTable } from './functions/to_html_table.js';
 import { swap } from './functions/swap.js';
+import { columnsToRows, rowsToColumns } from './functions/transpose.js';
 
 
 let data = [];
@@ -118,6 +119,23 @@ document.getElementById('swapBtn').addEventListener('click', () => {
   }
 });
 
+document.getElementById('colsToRowsBtn').addEventListener('click', () => {
+  try {
+    data = columnsToRows(data);
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+document.getElementById('rowsToColsBtn').addEventListener('click', () => {
+  try {
+    data = rowsToColumns(data);
+    updatePreview();
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
 
 function convertToCSV(data) {
   return data.map(row => row.join(",")).join("\n");
