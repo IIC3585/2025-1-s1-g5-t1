@@ -191,13 +191,65 @@ proyecto/
   ["juan", "perez", "jperez@gmail.com"]
 ]
 
-// insert_row(data, 2, ["ana", "flores", "aflores@gmail.com"]) resulta en:
+// insert_row(data, 1, ["ana", "flores", "aflores@gmail.com"]) resulta en:
 [
   ["nombre", "apellido", "mail"],
   ["ana", "flores", "aflores@gmail.com"],
   ["juan", "perez", "jperez@gmail.com"]
 ]
 ```
+
+### 9. `insert_column(data, colIndex, newCol)`
+- **Descripción:**  
+  Función que inserta una nueva columna en una posición específica de la matriz de datos CSV.
+- **Parámetros:**
+  - `data`: Matriz de datos (array de arrays)
+  - `colIindex`: Índice donde se insertará la nueva fila (basado en 1)
+  - `newCol`: Array con los valores de la nueva columna, incluyendo el header
+- **Proceso:**
+  - Verifica que la matriz no esté vacía
+  - Ajusta la longitud de la nueva columna para que coincida con el número de columnas existentes (rellena con vacíos)
+  - Valida que el índice de inserción sea válido
+  - Inserta la nueva columna en la posición especificada
+  - Retorna la matriz modificada
+- **Uso:**  
+  Se utiliza cuando se necesita agregar una nueva columna de datos al CSV.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["nombre", "apellido", "mail"],
+  ["juan", "perez", "jperez@gmail.com"]
+]
+
+// insert_column(data, 3, ["numero", "+56912345678"]) resulta en:
+[
+  ["nombre", "apellido", "numero", "mail"],
+  ["juan", "perez", "+56912345678", "jperez@gmail.com"]
+]
+```
+
+### 10. `updatePreview()`
+- **Descripción:**  
+  Actualiza el preview disponible
+- **Parámetros:**
+  - Trabaja con `data` de manera global en app.js
+- **Proceso:**
+  - Llamda a toHtmlTable para convertir la tabla en un HTML y retorna la tabla al contenedor de la view
+- **Uso:**  
+  Se utiliza cada vez que se realiza una operación en la app
+
+### 11. `toHtmlTable(data)`
+- **Descripción:**  
+  Convierte la matriz de datos en una tabla HTML. La primera fila la toma como header y las demás como rows. Agrega índices de manera visual (no a la tabla) a las columnas y las filas
+- **Parámetros:**
+  - Trabaja con la matriz `data` 
+- **Proceso:**
+  - Toma los elementos de la primera fila para convertirlos en `<thead>` y los demás en `<tbody>` 
+  - Retorna una `<table>` 
+- **Uso:**  
+  Se invoca desde udpatePreview
+
 
 ## Integración en la Interfaz (index.html)
 
