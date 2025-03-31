@@ -113,6 +113,92 @@ proyecto/
 ]
 ```
 
+### 6. `row_delete(data, rowIndex)`
+- **Descripción:**  
+  Función que elimina una fila específica de la matriz de datos CSV.
+- **Parámetros:**
+  - `data`: Matriz de datos (array de arrays)
+  - `rowIndex`: Índice de la fila a eliminar (basado en 1)
+- **Proceso:**
+  - Verifica que el índice esté dentro del rango válido de filas
+  - Utiliza el método `splice` para eliminar la fila especificada
+  - Retorna la matriz modificada
+- **Uso:**  
+  Se utiliza cuando se necesita eliminar una fila específica de los datos CSV.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["nombre", "apellido", "mail"],
+  ["juan", "perez", "jperez@gmail.com"],
+  ["ana", "flores", "aflores@gmail.com"]
+]
+
+// row_delete(data, 2) resulta en:
+[
+  ["nombre", "apellido", "mail"],
+  ["ana", "flores", "aflores@gmail.com"]
+]
+```
+
+### 7. `column_delete(data, colIndex)`
+- **Descripción:**  
+  Función que elimina una columna específica de la matriz de datos CSV.
+- **Parámetros:**
+  - `data`: Matriz de datos (array de arrays)
+  - `colIndex`: Índice de la columna a eliminar (basado en 1)
+- **Proceso:**
+  - Verifica que la matriz no esté vacía y que el índice esté dentro del rango válido de columnas
+  - Utiliza `map` y `filter` para crear una nueva matriz sin la columna especificada
+  - Retorna la matriz modificada
+- **Uso:**  
+  Se utiliza cuando se necesita eliminar una columna específica de los datos CSV.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["nombre", "apellido", "mail"],
+  ["juan", "perez", "jperez@gmail.com"]
+]
+
+// column_delete(data, 2) resulta en:
+[
+  ["nombre", "mail"],
+  ["juan", "jperez@gmail.com"]
+]
+```
+
+### 8. `insert_row(data, rowIndex, newRow)`
+- **Descripción:**  
+  Función que inserta una nueva fila en una posición específica de la matriz de datos CSV.
+- **Parámetros:**
+  - `data`: Matriz de datos (array de arrays)
+  - `rowIndex`: Índice donde se insertará la nueva fila (basado en 1)
+  - `newRow`: Array con los valores de la nueva fila
+- **Proceso:**
+  - Verifica que la matriz no esté vacía
+  - Ajusta la longitud de la nueva fila para que coincida con el número de columnas existentes
+  - Valida que el índice de inserción sea válido (no antes del header)
+  - Inserta la nueva fila en la posición especificada
+  - Retorna la matriz modificada
+- **Uso:**  
+  Se utiliza cuando se necesita agregar una nueva fila de datos al CSV.
+- **Ejemplo:**
+```json
+// Entrada:
+[
+  ["nombre", "apellido", "mail"],
+  ["juan", "perez", "jperez@gmail.com"]
+]
+
+// insert_row(data, 2, ["ana", "flores", "aflores@gmail.com"]) resulta en:
+[
+  ["nombre", "apellido", "mail"],
+  ["ana", "flores", "aflores@gmail.com"],
+  ["juan", "perez", "jperez@gmail.com"]
+]
+```
+
 ## Integración en la Interfaz (index.html)
 
 El archivo `index.html` proporciona una interfaz sencilla con cinco secciones principales:
