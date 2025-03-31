@@ -2,7 +2,7 @@
 
 # CSV Parser Modular en JavaScript
 
-Este proyecto es una aplicación sencilla para parsear archivos CSV, ya sea a partir de un string o de un archivo subido por el usuario. El objetivo es transformar el CSV en una matriz (similar a una tabla en pandas) que se puede manipular con otras funciones posteriormente.
+Este proyecto es una aplicación sencilla para parsear archivos CSV, ya sea a partir de un string o de un archivo subido por el usuario. El objetivo es transformar el CSV en una matriz y poder realizar operaciones sobre ella. En esta demo (se comenta luego como correrla de forma sencilla), se pueden hacer las operaciones mediante botones.
 
 ## Para ver y probar la aplicación en funcionamiento:
 
@@ -16,13 +16,15 @@ Con la extensión Live Server en VS Code: Abre la carpeta del proyecto, haz clic
 
 proyecto/
 
+├── functions/ (contiene las funciones)
+
+├── samples/ (contiene un ejemplo de texto y uno de csv)
+
 ├── index.html
 
-├── styles.css
+├── index.css
 
-├── app.js
-
-└── csv_parser.js
+└── app.js
 
 ## Funcionalidades del Parser
 
@@ -113,11 +115,17 @@ proyecto/
 
 ## Integración en la Interfaz (index.html)
 
-El archivo `index.html` proporciona una interfaz sencilla con dos secciones principales:
+El archivo `index.html` proporciona una interfaz sencilla con cinco secciones principales:
 - **Entrada de CSV como Texto:**  
   Un `<textarea>` y un botón para parsear el contenido ingresado.
 - **Subida de Archivo CSV:**  
   Un `<input type="file">` para seleccionar un archivo CSV desde el computador.
+- **Botones:**  
+  Varios `<buttons>` para seleccionar la operación sobre la tabla.
+- **Descargar CSV:**  
+  Un `<button>` para descargar el csv resultante.
+- **Preview:**  
+  Una gran visualización sobre la `<table>` en html que se actualiza con las operaciones de los botones.
 
 ### ¿Cómo se Trabaja con el Objeto Resultante?
 
