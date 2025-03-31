@@ -68,7 +68,17 @@ document.getElementById('csvFileInput').addEventListener('change', event => {
 });
 
 document.getElementById('deleteRowBtn').addEventListener('click', () => {
-  const rowIndex = parseInt(prompt('¿Cuál fila quieres eliminar? (Índice empieza en 0)'), 10);
+  const input = prompt('¿Cuál fila quieres eliminar? (Índice empieza en 0)');
+  if (input === null) {
+    return;
+  }
+  
+  const rowIndex = parseInt(input, 10);
+  if (isNaN(rowIndex)) {
+    alert('Índice inválido.');
+    return;
+  }
+  
   try {
     data = rowdelete(data, rowIndex);
     updatePreview();
@@ -76,6 +86,7 @@ document.getElementById('deleteRowBtn').addEventListener('click', () => {
     alert('Error: ' + error.message);
   }
 });
+
 
 document.getElementById('deleteColBtn').addEventListener('click', () => {
   const colIndex = parseInt(prompt('¿Cuál columna quieres eliminar? (Índice empieza en 0)'), 10);
